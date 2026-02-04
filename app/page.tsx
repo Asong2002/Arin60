@@ -14,7 +14,7 @@ interface Message {
 
 export default function Home(): JSX.Element {
   // ================= 配置区 ================= 
-  const CONFIG_FEEDBACK: 'FIXED' | 'RANDOM' = 'RANDOM' as 'FIXED' | 'RANDOM'; // 'FIXED' = 100% 组, 'RANDOM' = 60% 组 (随机顺序，但固定6次脸红)
+  const CONFIG_FEEDBACK: 'FIXED' | 'RANDOM' = 'FIXED' ; // 'FIXED' = 100% 组, 'RANDOM' = 60% 组 (随机顺序，但固定6次脸红)
   const COOLDOWN_TIME = 1800; // 冷却时间：1800ms (1.8秒)
   const FEEDBACK_DURATION = 1500; // 亮灯/脸红持续时间：1500ms (1.5秒)
   const MESSAGE_DELAY = 0; // 文字回复延迟时间：0ms (立即回复)
