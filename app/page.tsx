@@ -14,7 +14,7 @@ interface Message {
 
 export default function Home(): JSX.Element {
   // ================= 配置区 ================= 
-  const CONFIG_FEEDBACK: 'FIXED' | 'RANDOM' = 'FIXED'; // 'FIXED' = 100% 组, 'RANDOM' = 60% 组 (随机顺序，但固定6次脸红)
+  const CONFIG_FEEDBACK: 'FIXED' | 'RANDOM' = 'RANDOM' as 'FIXED' | 'RANDOM'; // 'FIXED' = 100% 组, 'RANDOM' = 60% 组 (随机顺序，但固定6次脸红)
   const COOLDOWN_TIME = 1800; // 冷却时间：1800ms (1.8秒)
   const FEEDBACK_DURATION = 1500; // 亮灯/脸红持续时间：1500ms (1.5秒)
   const MESSAGE_DELAY = 0; // 文字回复延迟时间：0ms (立即回复)
@@ -425,11 +425,15 @@ export default function Home(): JSX.Element {
         <div className={styles.leftPanel}>
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <div className={styles.aiAvatar} id="avatarIcon">
-              <div className={styles.earLeft}></div>
-              <div className={styles.earRight}></div>
-              <div className={styles.aiEyes}><div className={styles.eye}></div><div className={styles.eye}></div></div>
-              <div className={`${styles.blush} ${styles.left} ${showBlush ? styles.blushVisible : ''}`} id="blushLeft"></div>
-              <div className={`${styles.blush} ${styles.right} ${showBlush ? styles.blushVisible : ''}`} id="blushRight"></div>
+              <div className={`${styles.antenna} ${styles.left}`}></div>
+              <div className={`${styles.antenna} ${styles.right}`}></div>
+              <div className={`${styles.sideModule} ${styles.left}`}></div>
+              <div className={`${styles.sideModule} ${styles.right}`}></div>
+              <div className={styles.aiFace}>
+                <div className={styles.aiEyes}><div className={styles.eye}></div><div className={styles.eye}></div></div>
+                <div className={`${styles.blush} ${styles.left} ${showBlush ? styles.blushVisible : ''}`} id="blushLeft"></div>
+                <div className={`${styles.blush} ${styles.right} ${showBlush ? styles.blushVisible : ''}`} id="blushRight"></div>
+              </div>
             </div>
             <div className={styles.statusOrbContainer}><div ref={statusLightRef} className={styles.statusOrb} id="statusLight"></div></div>
           </div>
