@@ -36,106 +36,120 @@
 }
 
 /* === Arin 形象 === */
-  .aiAvatar {
-    width: 160px;
-    height: 160px;
-    background: var(--lumi-white);
-    border: 2px solid #e2e8f0;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 0 8px 20px rgba(148, 163, 184, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin-bottom: 10px;
-  }
 
-  .avatarBounce { transform: scale(0.95); }
+/* 头像主容器 */
+.aiAvatar {
+  width: 116px;
+  height: 96px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-  /* 天线 */
-  .aiAvatar::before, .aiAvatar::after {
-    content: ''; 
-    position: absolute;
-    top: -30px;
-    width: 30px; 
-    height: 30px;
-    background-color: #3b82f6;
-    border: 2px solid #e2e8f0;
-    border-radius: 50%;
-    z-index: 1;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
-  }
+.avatarBounce { transform: scale(0.95); }
 
-  .aiAvatar::before {
-    left: 30px;
-  }
-  
-  .aiAvatar::after {
-    right: 30px;
-  }
+/* 脸部（最前层） */
+.aiFace {
+  width: 100%;
+  height: 100%;
+  background: var(--lumi-white);
+  border: 4px solid var(--lumi-border);
+  border-radius: 50% 50% 45% 45%;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 15px 35px rgba(148, 163, 184, 0.25);
+  display: flex;
+  justify-content: center;
+}
 
-  /* 耳朵 */
-  .earLeft, .earRight {
-    position: absolute;
-    top: 60px;
-    width: 20px;
-    height: 40px;
-    background-color: var(--lumi-white);
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    z-index: 0;
-  }
+/* 天线杆 */
+.antenna {
+  position: absolute;
+  top: -20px;
+  width: 12px;
+  height: 35px;
+  background: var(--lumi-white);
+  border: 4px solid var(--lumi-border);
+  border-radius: 8px;
+  z-index: 1;
+}
 
-  .earLeft {
-    left: -15px;
-  }
+/* 天线顶部蓝点（发光） */
+.antenna::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  margin-left: -8px;
+  width: 16px;
+  height: 16px;
+  background: var(--msg-user-bg);
+  border: 3px solid var(--lumi-border);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
 
-  .earRight {
-    right: -15px;
-  }
+.antenna.left { left: 18px; transform: rotate(-15deg); }
+.antenna.right { right: 18px; transform: rotate(15deg); }
 
-  .aiEyes {
-    display: flex;
-    gap: 40px;
-    margin-top: 10px;
-    z-index: 5;
-  }
+/* 侧面模块（类似耳朵） */
+.sideModule {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 44px;
+  background: var(--lumi-white);
+  border: 4px solid var(--lumi-border);
+  border-radius: 8px;
+  z-index: 2;
+}
 
-  .eye {
-    width: 20px;
-    height: 20px;
-    background-color: #1e293b;
-    border-radius: 50%;
-    animation: blink 4.5s infinite;
-  }
+.sideModule.left { left: -10px; }
+.sideModule.right { right: -10px; }
+
+/* 眼睛 */
+.aiEyes {
+  display: flex;
+  gap: 26px;
+  z-index: 5;
+  margin-top: 38px;
+  position: absolute;
+}
+
+.eye {
+  width: 14px;
+  height: 18px;
+  background: var(--eye-color);
+  border-radius: 50%;
+  animation: blink 4.5s infinite;
+}
+
+/* 眨眼动画关键帧 */
+@keyframes blink {
+  0%, 96%, 100% { transform: scaleY(1); }
+  98% { transform: scaleY(0.1); }
+}
 
 /* === 腮红效果 === */
 .blush {
   position: absolute;
   top: 60%;
-  width: 34px;
-  height: 22px;
-  background: radial-gradient(ellipse at center, var(--blush-color) 20%, transparent 70%);
+  width: 24px;
+  height: 18px;
+  background: var(--blush-color);
   border-radius: 50%;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 4;
+  transition: opacity 0.5s ease;
+  filter: blur(5px);
+  z-index: 6;
 }
 
-.left {
-  left: 10%;
-}
-
-.right {
-  right: 10%;
-}
-
-.blushVisible {
-  opacity: 1;
-}
+.blush.left { left: 12%; }
+.blush.right { right: 12%; }
+.blushVisible { opacity: 0.8; }
 
 .statusOrbContainer {
   margin-bottom: 30px;
